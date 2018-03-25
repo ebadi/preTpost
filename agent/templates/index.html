@@ -1,0 +1,16 @@
+<A href="form" >Analysis upload form</A>
+<BR>
+<A href="publicpolicy" >Public Policy</A>
+<BR>
+<A href="totalcost" >Current Total Cost</A>
+<form id = "result" onsubmit="formToUrl()">
+    <input type="text" name="reId">
+    <input type="submit" value="Search">
+</form>
+<script>
+function formToUrl(){
+    var action_src = "/result/" + document.getElementsByName("reId")[0].value;
+    var result = document.getElementById('result');
+    result.action = action_src ;
+}
+</script>

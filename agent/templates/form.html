@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Submit an Analysis Here</title>
+    </head>
+    <body>
+        <form  name="myForm" method="POST" enctype="multipart/form-data" action="{{ url_for('uploadAnalysis') }}" >
+<div style="background-color:green;color:white;padding:20px;"> 
+          <h4><u>Pre</u>-Processing</h4><input type="file" name="preprocProg">
+          pre-processing program parameters: <input type="text" name="preparameters" value="">
+          Resources for preprocessing: <textarea name="preresource" >timeout:2;cpu:1;mount:configData|passwordData</textarea>
+</div>
+          <input type="hidden" id="numoutputs" name="numoutputs" value="" />
+          <br>
+          <div id="DynamicMechanism">
+          <h4><u>T</u>ransformation</h4>
+          </div>
+          <select name='inputSelect'>
+            <option value ="analysesLaplace">analysesLaplace</option>
+            <option value ="analysesMatrix">analysesMatrix</option>
+         <input type="button" value="Add selected input" onClick="AddAnonMechanism('DynamicMechanism', document.myForm.inputSelect.value);">
+         <br><br>
+<div style="background-color:brown;color:white;padding:20px;">
+          <h4><u>Post</u>-processing</h4><input type="file" name="postprocProg">
+          post-processing program parameters: <input type="text" name="postparameters"  value="">
+          Resources for preprocessing: <textarea name="postresource" >timeout:2;cpu:1;mount:environementData</textarea>
+</div>
+          <br>
+          <input type="submit" value="execute">
+        </form>
+    </body>
+</html>
+<!-- Taken from http://www.randomsnippets.com/2008/02/21/how-to-dynamically-add-form-elements-via-javascript/ -->
+<script>
+var num = 0 ;
+function AddAnonMechanism(divName, mechanismType){
+  var newdiv = document.createElement('div');
+  switch(mechanismType) {
+    case 'analysesMatrix':
+      newdiv.innerHTML = "<input type=\"hidden\" name=\"type["+ num +"]\" value=\"analysesMatrix\">analysesData" + num + " transformation matrix:<textarea name=\"analysesData["+ num +"]\" > Here write down the transition matrix</textarea> <br>"
+      num++;
+      break;
+    case 'analysesLaplace':
+      newdiv.innerHTML = "<input type=\"hidden\" name=\"type["+ num +"]\" value=\"analysesLaplace\">analysesData" + num + " epsilon for laplace :<input type=\"text\" name=\"analysesData["+ num +"]\" ><br>"
+      num++;
+      break;
+    }
+    document.getElementById(divName).appendChild(newdiv);
+    document.getElementById('numoutputs').value = num ;
+}
+</script>

@@ -1,0 +1,12 @@
+sensitiveData = "sensitiveData/"
+Clamp = "clamp"
+privatePolicy = "privatepolicy"
+publicPolicy = "publicpolicy"
+preProc = "preprocFile.py"
+preProcResult = "preProcResult.xml"
+randomizedResult = "randomizedResult.xml"
+postProc = "postprocFile.py"
+postprocResult = "postprocResult.xml"
+totalCostStorage = 'costStorage.txt'
+budgetStorage = 'budgetStorage.txt'
+reqInfo = "configParams.ini"
